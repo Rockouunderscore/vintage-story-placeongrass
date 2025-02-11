@@ -1,0 +1,13 @@
+{
+    "type": "code",
+    "modid": "placeongrass",
+    "name": "placeongrass",
+    "authors": [
+        "Rockou_"
+    ],
+    "description": "Allows roots and trees to be planted over grass",
+    "version": "1.0.0",
+    "dependencies": {
+        "game": ""
+    }
+}
