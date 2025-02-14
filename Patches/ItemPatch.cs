@@ -7,7 +7,11 @@ public class ItemPatch
 {
     public static bool OnHeldInteractStart_Prefix(Item __instance, ItemSlot itemslot, EntityAgent byEntity, ref BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling)
     {
-        byEntity.Api.Logger.Debug($"blockSel.Block.FirstCodePart() {blockSel.Block.Code}");
+        // byEntity.Api.Logger.Debug($"blockSel.Block.FirstCodePart() {blockSel.Block.Code}");
+        
+        if (byEntity == null) return true;
+        if (blockSel == null) return true;
+        
         if (blockSel.Block.FirstCodePart() != "tallgrass")
         {
             return true;
