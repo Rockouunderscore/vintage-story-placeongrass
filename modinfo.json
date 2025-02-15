@@ -6,7 +6,7 @@
         "Rockou_"
     ],
     "description": "Allows roots and trees to be planted over grass",
-    "version": "1.0.1",
+    "version": "1.0.3",
     "dependencies": {
         "game": ""
     }

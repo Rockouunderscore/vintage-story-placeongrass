@@ -1,11 +1,10 @@
-﻿using System.Reflection;
+﻿
+using System.Reflection;
 using HarmonyLib;
 using placeongrass.Patches;
 using Vintagestory.API.Client;
 using Vintagestory.API.Server;
-using Vintagestory.API.Config;
 using Vintagestory.API.Common;
-using Vintagestory.Common;
 using Vintagestory.GameContent;
 
 namespace placeongrass;
@@ -19,7 +18,10 @@ public class PlaceOnGrassModSystem : ModSystem
 
     private void Init(ICoreAPI api)
     {
+        Mod.Logger.Notification($"{nameof(PlaceOnGrassModSystem)}.{nameof(Init)} {api.Side} {ModID}");
+        
         Global.Api = api;
+        
         try
         {
             Global.Config = Global.Api.LoadModConfig<Config>(ConfigFileName);
@@ -46,11 +48,33 @@ public class PlaceOnGrassModSystem : ModSystem
             harmony.Patch(reedRoot, prefix: prefix);
         }
     }
-    
+
+    public new double ExecuteOrder() => 0.2d;
+
+    public override void Start(ICoreAPI api)
+    {
+        base.Start(api);
+        
+        // Mod.Logger.Notification($"{nameof(PlaceOnGrassModSystem)}.{nameof(Start)} {api.Side} {ModID}");
+
+        // Init(api);
+    }
+
+    public override void StartServerSide(ICoreServerAPI api)
+    {
+        base.StartServerSide(api);
+
+        // Mod.Logger.Notification($"{nameof(PlaceOnGrassModSystem)}.{nameof(StartServerSide)} {ModID}");
+
+        // Init(api);
+    }
+
     public override void StartClientSide(ICoreClientAPI api)
     {
-        Mod.Logger.Notification($"{nameof(PlaceOnGrassModSystem)}.{nameof(StartClientSide)} {ModID}");
+        base.StartClientSide(api);
         
+        Mod.Logger.Notification($"{nameof(PlaceOnGrassModSystem)}.{nameof(StartClientSide)} {ModID}");
+
         Init(api);
     }
     
